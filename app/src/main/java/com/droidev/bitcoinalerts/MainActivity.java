@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
                 tinyDB.putInt("altaprioridade", Integer.parseInt(txFee));
 
-                Toast.makeText(this, "Notificações ativadas.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Notificações de Taxa ativadas.", Toast.LENGTH_SHORT).show();
 
                 feeStartAlarm();
 
@@ -363,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.dismiss();
 
-                Toast.makeText(this, "Notificações ativadas.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Notificações de Preço ativadas.", Toast.LENGTH_SHORT).show();
 
                 priceStartAlarm(Integer.parseInt(time));
 
