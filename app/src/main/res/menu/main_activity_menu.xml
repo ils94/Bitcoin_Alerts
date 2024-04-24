@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/fetchPrices"
+        android:title="Atualizar valores"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/calculator"
+        android:title="Calcular valores"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/memPool"
+        android:title="mempool.space"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:title="Notificações"
+        tools:ignore="HardcodedText">
+        <menu>
+            <item
+                android:title="Taxa de Transação"
+                tools:ignore="HardcodedText">
+                <menu>
+                    <item
+                        android:id="@+id/feeNotificationsON"
+                        android:title="Ativar notificações"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/feeNotificationsOFF"
+                        android:title="Desativar notificações"
+                        tools:ignore="HardcodedText" />
+                </menu>
+            </item>
+            <item
+                android:title="Preço do Bitcoin"
+                tools:ignore="HardcodedText">
+                <menu>
+                    <item
+                        android:id="@+id/priceNotificationsON"
+                        android:title="Ativar notificações"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/priceNotificationsOFF"
+                        android:title="Desativar notificações"
+                        tools:ignore="HardcodedText" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/allNotificationsOFF"
+                android:title="Desativar todas as notificações"
+                tools:ignore="HardcodedText" />
+        </menu>
+    </item>
+</menu>

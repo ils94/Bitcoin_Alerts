@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bitcoin"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/btcBRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Preço do BTC em BRL: ..."
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/btcUSD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Preço do BTC em USD: ..."
+                tools:ignore="HardcodedText" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp">
+
+            </Space>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp">
+
+            </Space>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c0c0c0" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp">
+
+            </Space>
+
+            <TextView
+                android:id="@+id/fastestFee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Taxa de Prioridade Alta: ..."
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/halfHourFee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Taxa de Prioridade Média: ..."
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/hourFee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Taxa de Prioridade Baixa: ..."
+                tools:ignore="HardcodedText" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp">
+
+            </Space>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c0c0c0" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="5dp">
+
+            </Space>
+
+            <TextView
+                android:id="@+id/dateTimePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Preço atualizado em: ..."
+                tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/dateTimeFee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Taxa atualizada em: ..."
+            tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+</ScrollView>
