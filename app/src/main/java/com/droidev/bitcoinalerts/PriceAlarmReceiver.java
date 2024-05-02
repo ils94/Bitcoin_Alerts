@@ -43,7 +43,7 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
 
                 String formattedDate = dateFormat.format(currentDate);
 
-                String date = "Preço atualizada em: " + formattedDate;
+                String date = "Preço atualizado em: " + formattedDate;
 
                 tinyDB.putString("datetimeprice", date);
 
