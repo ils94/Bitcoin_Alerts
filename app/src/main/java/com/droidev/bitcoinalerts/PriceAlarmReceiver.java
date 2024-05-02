@@ -7,6 +7,7 @@ import android.content.Intent;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,8 +28,14 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
                 NumberFormat currencyFormatBRL = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
                 NumberFormat currencyFormatUSD = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
 
-                tinyDB.putString("btcbrl", "Preço do BTC em BRL: " + currencyFormatBRL.format(brlValue));
-                tinyDB.putString("btcusd", "Preço do BTC em USD: " + currencyFormatUSD.format(usdValue));
+                String brlFormat = currencyFormatBRL.format(brlValue);
+                String usdFormat = currencyFormatUSD.format(usdValue);
+
+                String brl = "Preço do BTC em BRL: " + brlFormat;
+                String usd = "Preço do BTC em USD: " + usdFormat;
+
+                tinyDB.putString("btcbrl", brl);
+                tinyDB.putString("btcusd", usd);
 
                 Date currentDate = new Date();
 
@@ -36,12 +43,31 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
 
                 String formattedDate = dateFormat.format(currentDate);
 
-                tinyDB.putString("datetimeprice", "Preço atualizada em: " + formattedDate);
+                String date = "Preço atualizada em: " + formattedDate;
 
-                PriceNotification.showNotification(context, currencyFormatBRL.format(brlValue), currencyFormatUSD.format(usdValue));
+                tinyDB.putString("datetimeprice", date);
+
+                saveHistory(context, brl, usd, date);
+
+                PriceNotification.showNotification(context, brlFormat, usdFormat);
             }
         });
 
         fetcher.execute();
+    }
+
+    private void saveHistory(Context context, String btcBRL, String btcUSD, String dateTimePrice) {
+
+        TinyDB tinyDB = new TinyDB(context);
+
+        ArrayList<String> arrayListPrice;
+
+        arrayListPrice = tinyDB.getListString("priceHistory");
+
+        String price = btcBRL + "\n" + btcUSD + "\n" + dateTimePrice;
+
+        arrayListPrice.add(price);
+
+        tinyDB.putListString("priceHistory", arrayListPrice);
     }
 }

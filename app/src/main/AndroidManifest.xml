@@ -16,6 +16,12 @@
         android:theme="@style/Theme.BitcoinAlerts"
         tools:targetApi="31">
         <activity
+            android:name=".FeeHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PriceHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".PriceCalculatorActivity"
             android:exported="false" />
         <activity

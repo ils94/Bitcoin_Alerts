@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
@@ -17,6 +16,21 @@
         android:id="@+id/memPool"
         android:title="mempool.space"
         tools:ignore="HardcodedText" />
+
+    <item
+        android:title="Histórico"
+        tools:ignore="HardcodedText">
+        <menu>
+            <item
+                android:id="@+id/priceHistory"
+                android:title="Preço"
+                tools:ignore="HardcodedText" />
+            <item
+                android:id="@+id/feeHistory"
+                android:title="Taxa"
+                tools:ignore="HardcodedText" />
+        </menu>
+    </item>
 
     <item
         android:title="Notificações"

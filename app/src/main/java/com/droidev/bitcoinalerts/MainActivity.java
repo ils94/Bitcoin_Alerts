@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -81,6 +82,20 @@ public class MainActivity extends AppCompatActivity {
 
             String url = "https://mempool.space/pt/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+
+        }
+
+        if (item.getItemId() == R.id.priceHistory) {
+
+            Intent intent = new Intent(MainActivity.this, PriceHistoryActivity.class);
+            startActivity(intent);
+
+        }
+
+        if (item.getItemId() == R.id.feeHistory) {
+
+            Intent intent = new Intent(MainActivity.this, FeeHistoryActivity.class);
             startActivity(intent);
 
         }
@@ -155,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
                     tinyDB.putString("btcusd", btcUSD.getText().toString());
 
                     getFees();
+
+                    saveHistory();
 
                     Toast.makeText(this, "Valores atualizados.", Toast.LENGTH_SHORT).show();
 
@@ -394,6 +411,29 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_MUTABLE);
 
         alarmManager.cancel(pendingIntent);
+    }
+
+    private void saveHistory() {
+
+        ArrayList<String> arrayListPrice;
+
+        arrayListPrice = tinyDB.getListString("priceHistory");
+
+        String price = btcBRL.getText() + "\n" + btcUSD.getText() + "\n" + dateTimePrice.getText();
+
+        arrayListPrice.add(price);
+
+        tinyDB.putListString("priceHistory", arrayListPrice);
+
+        ArrayList<String> arrayListFee;
+
+        arrayListFee = tinyDB.getListString("feeHistory");
+
+        String fee = fastestFee.getText() + "\n" + halfHourFee.getText() + "\n" + hourFee.getText() + "\n" + dateTimeFee.getText();
+
+        arrayListFee.add(fee);
+
+        tinyDB.putListString("feeHistory", arrayListFee);
     }
 
     @SuppressLint("InlinedApi")
