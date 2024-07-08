@@ -26,7 +26,7 @@ public class PriceHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price_history);
 
-        setTitle("Histórico de Preços");
+        setTitle("Price History");
 
         tinyDB = new TinyDB(this);
 
@@ -59,7 +59,7 @@ public class PriceHistoryActivity extends AppCompatActivity {
 
             priceHistory.setText("");
 
-            Toast.makeText(this, "Histórico de Preço foi apagado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "History deleted.", Toast.LENGTH_SHORT).show();
 
         }
 

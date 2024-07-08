@@ -18,8 +18,8 @@ public class PriceNotification {
         notificationManager.createNotificationChannel(channel);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "bitcoin_price_channel")
-                .setContentTitle("Bitcoin Alerts - Preço")
-                .setContentText("Preço em BRL: " + brl + "\nPreço em USD: " + usd)
+                .setContentTitle("Bitcoin Alerts - Price")
+                .setContentText("BRL Price: " + brl + "\nUSD Price: " + usd)
                 .setSmallIcon(R.drawable.bitcoin)
                 .setAutoCancel(true);
 
