@@ -66,7 +66,6 @@ public class PriceHistoryActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.price_history_menu, menu);
 

@@ -23,7 +23,7 @@ public class FeeHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fee_history);
 
-        setTitle("Tx History");
+        setTitle("Tx Fees History");
 
         tinyDB = new TinyDB(this);
 
@@ -62,7 +62,6 @@ public class FeeHistoryActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.fee_history_menu, menu);

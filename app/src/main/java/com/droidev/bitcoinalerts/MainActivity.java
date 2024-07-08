@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView btcBRL, btcUSD, fastestFee, halfHourFee, hourFee, dateTimePrice, dateTimeFee;
+    ProgressBar progressBar;
 
     Menu menuItem;
 
@@ -58,9 +61,10 @@ public class MainActivity extends AppCompatActivity {
         dateTimePrice = findViewById(R.id.dateTimePrice);
         dateTimeFee = findViewById(R.id.dateTimeFee);
 
+        progressBar = findViewById(R.id.progressBar);
+
         loadSavedData();
     }
-
 
     @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -147,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
 
@@ -156,8 +159,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     public void fetchPrice() {
+
+        progressBar.setVisibility(View.VISIBLE);
 
         @SuppressLint("SetTextI18n") BitcoinPriceFetcher fetcher = new BitcoinPriceFetcher(bitcoinPrice -> {
             if (bitcoinPrice != null) {
@@ -182,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(this, "Update completed.", Toast.LENGTH_SHORT).show();
 
+                    progressBar.setVisibility(View.GONE);
+
                 } catch (Exception e) {
 
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -191,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
 
         fetcher.execute();
     }
-
 
     @SuppressLint("SetTextI18n")
     public void saveTime() {
@@ -239,7 +244,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public void loadSavedData() {
 
@@ -293,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
             hourFee.setText(hourfee);
         }
     }
-
 
     public void feeStartAlarmPrompt() {
 
@@ -397,7 +400,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void priceStartAlarm(int time) {
 

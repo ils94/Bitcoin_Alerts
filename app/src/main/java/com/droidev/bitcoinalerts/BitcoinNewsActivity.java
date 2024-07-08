@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,7 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
 
     private RecyclerView recyclerView;
     Menu menuItem;
+    private ProgressBar progressBar;
     TinyDB tinyDB;
 
     @Override
@@ -37,6 +40,10 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        progressBar = findViewById(R.id.progressBarNews);
+
+        progressBar.setVisibility(View.VISIBLE);
+
         BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);
     }
 
@@ -45,10 +52,14 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
 
         ArticleAdapter adapter = new ArticleAdapter(articles, this);
         recyclerView.setAdapter(adapter);
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onFetchError(String error) {
+
+        progressBar.setVisibility(View.GONE);
 
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
@@ -57,6 +68,8 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.reload) {
+
+            progressBar.setVisibility(View.VISIBLE);
 
             BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);;
 
@@ -97,7 +110,6 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
 
         return super.onOptionsItemSelected(item);
     }
-
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bitcoin_news_menu, menu);
