@@ -1,5 +1,6 @@
 package com.droidev.bitcoinalerts;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -16,36 +17,41 @@ import okhttp3.Response;
 
 public class BitcoinNewsFetcher {
 
-    private static final String API_KEY = "fa7b8fc02c3948b0905fe0d6ae46dad3";
-    private static final String NEWS_API_URL = "https://newsapi.org/v2/everything?q=Bitcoin&apiKey=" + API_KEY;
+    private static final String BASE_URL = "https://newsapi.org/v2/everything?q=Bitcoin&apiKey=";
 
     public interface NewsFetchListener {
         void onNewsFetched(List<Article> articles);
         void onFetchError(String error);
     }
 
-    public static void fetchBitcoinNews(NewsFetchListener listener) {
-        new FetchNewsTask(listener).execute();
+    public static void fetchBitcoinNews(Context context, NewsFetchListener listener) {
+        new FetchNewsTask(context, listener).execute();
     }
 
     private static class FetchNewsTask extends AsyncTask<Void, Void, List<Article>> {
+        private Context context;
         private NewsFetchListener listener;
 
-        public FetchNewsTask(NewsFetchListener listener) {
+        public FetchNewsTask(Context context, NewsFetchListener listener) {
+            this.context = context;
             this.listener = listener;
         }
 
         @Override
         protected List<Article> doInBackground(Void... voids) {
+            TinyDB tinyDB = new TinyDB(context);
+            String apiKey = tinyDB.getString("apikey");
+            String newsApiUrl = BASE_URL + apiKey;
+
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(NEWS_API_URL)
+                    .url(newsApiUrl)
                     .build();
 
             try (Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful() && response.body() != null) {
                     String json = response.body().string();
-                    Type articleListType = new TypeToken<List<Article>>(){}.getType();
+                    Type articleListType = new TypeToken<List<Article>>() {}.getType();
                     NewsResponse newsResponse = new Gson().fromJson(json, NewsResponse.class);
                     return newsResponse.articles;
                 } else {
@@ -80,5 +86,3 @@ public class BitcoinNewsFetcher {
         public String publishedAt;
     }
 }
-
-

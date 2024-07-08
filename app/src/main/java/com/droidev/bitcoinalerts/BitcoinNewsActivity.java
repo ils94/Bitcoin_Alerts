@@ -1,18 +1,29 @@
 package com.droidev.bitcoinalerts;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.List;
 
 public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNewsFetcher.NewsFetchListener {
 
     private RecyclerView recyclerView;
-    private ArticleAdapter adapter;
+    Menu menuItem;
+    TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +32,78 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
 
         setTitle("Bitcoin News");
 
+        tinyDB = new TinyDB(this);
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        BitcoinNewsFetcher.fetchBitcoinNews(this);
+        BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);
     }
 
     @Override
     public void onNewsFetched(List<BitcoinNewsFetcher.Article> articles) {
-        // Handle the fetched news articles here
-        adapter = new ArticleAdapter(articles, this);
+
+        ArticleAdapter adapter = new ArticleAdapter(articles, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onFetchError(String error) {
-        // Handle the error here
+
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.reload) {
+
+            BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);;
+
+        }
+
+        if (item.getItemId() == R.id.apiKEY) {
+
+            final EditText editText = new EditText(this);
+            editText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            editText.setHint("API Key");
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Save your API Key");
+            builder.setCancelable(false);
+
+            builder.setView(editText);
+
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                String text = editText.getText().toString().replace(" ", "").trim();
+
+                tinyDB.remove("apikey");
+                tinyDB.putString("apikey", text);
+            });
+
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+        if (item.getItemId() == R.id.getAPIKey) {
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://newsapi.org/account"));
+            startActivity(intent);
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bitcoin_news_menu, menu);
+
+        menuItem = menu;
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

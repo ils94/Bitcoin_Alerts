@@ -33,4 +33,10 @@
         android:textSize="12sp"
         android:paddingTop="4dp"
         android:textColor="#808080" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp" />
 </LinearLayout>
