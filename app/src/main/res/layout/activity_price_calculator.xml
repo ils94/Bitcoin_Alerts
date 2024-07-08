@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Preço do BTC"
+            android:text="BTC Price"
             android:textAlignment="center"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Valor em BTC"
+                android:hint="BTC amount"
                 android:inputType="number|numberDecimal"
                 tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
@@ -48,14 +48,14 @@
             android:id="@+id/priceBRL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valor em BRL:"
+            android:text="BRL amount:"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/priceUSD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valor em USD:"
+            android:text="USD amount:"
             tools:ignore="HardcodedText" />
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Calcular"
+            android:text="Calculate"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,TextContrastCheck" />
 
         <Space
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Valor de BRL em BTC"
+            android:text="BTC price in BRL"
             android:textAlignment="center"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -96,7 +96,7 @@
             android:id="@+id/BRLamount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valor em BRL"
+            android:hint="BRL amount"
             android:inputType="number|numberDecimal"
             tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
@@ -104,7 +104,7 @@
             android:id="@+id/priceBRLBTC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valor em BTC:"
+            android:text="BTC amount:"
             tools:ignore="HardcodedText" />
 
         <Button
@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Calcular"
+            android:text="Calculate"
             tools:ignore="HardcodedText,TextContrastCheck" />
 
         <Space
@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Valor de USD em BTC"
+            android:text="BTC price in USD"
             android:textAlignment="center"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -145,7 +145,7 @@
             android:id="@+id/USDamount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valor em USD"
+            android:hint="USD amount"
             android:inputType="number|numberDecimal"
             tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
@@ -153,7 +153,7 @@
             android:id="@+id/priceUSDBTC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Valor em BTC:"
+            android:text="BTC amount:"
             tools:ignore="HardcodedText" />
 
         <Button
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Calcular"
+            android:text="Calculate"
             tools:ignore="HardcodedText,TextContrastCheck" />
 
     </LinearLayout>

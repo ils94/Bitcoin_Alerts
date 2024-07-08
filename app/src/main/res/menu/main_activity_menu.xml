@@ -42,7 +42,7 @@
         tools:ignore="HardcodedText">
         <menu>
             <item
-                android:title="Taxa de Transação"
+                android:title="Tx fees"
                 tools:ignore="HardcodedText">
                 <menu>
                     <item

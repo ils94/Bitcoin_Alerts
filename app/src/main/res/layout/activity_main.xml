@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Preço do BTC em BRL: ..."
+                android:text="Bitcoin Price BRL: ..."
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Preço do BTC em USD: ..."
+                android:text="Bitcoin Price USD: ..."
                 tools:ignore="HardcodedText" />
 
             <Space
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Taxa de Prioridade Alta: ..."
+                android:text="High priority: ..."
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Taxa de Prioridade Média: ..."
+                android:text="Medium priority: ..."
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Taxa de Prioridade Baixa: ..."
+                android:text="Low priority: ..."
                 tools:ignore="HardcodedText" />
 
             <Space
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Preço atualizado em: ..."
+                android:text="Price updated on: ..."
                 tools:ignore="HardcodedText" />
 
         <TextView
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Taxa atualizada em: ..."
+            android:text="Tx updated on: ..."
             tools:ignore="HardcodedText" />
 
         </LinearLayout>

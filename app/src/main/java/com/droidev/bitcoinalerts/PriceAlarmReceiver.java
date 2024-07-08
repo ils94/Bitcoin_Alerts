@@ -39,7 +39,7 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
 
                 Date currentDate = new Date();
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm:ss", Locale.getDefault());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss", Locale.getDefault());
 
                 String formattedDate = dateFormat.format(currentDate);
 

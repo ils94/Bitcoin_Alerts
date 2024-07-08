@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.feeNotificationsOFF) {
 
-            Toast.makeText(this, "Tx fees Notifications was turned off.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tx fees Notifications off.", Toast.LENGTH_SHORT).show();
 
             feeCancelAlarm();
 
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.priceNotificationsOFF) {
 
-            Toast.makeText(this, "Price Notifications turned off.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Price Notifications off.", Toast.LENGTH_SHORT).show();
 
             priceCancelAlarm();
 
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.allNotificationsOFF) {
 
-            Toast.makeText(this, "All Notifications were turned off.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "All Notifications off.", Toast.LENGTH_SHORT).show();
 
             priceCancelAlarm();
             feeCancelAlarm();
@@ -198,12 +198,12 @@ public class MainActivity extends AppCompatActivity {
 
         Date currentDate = new Date();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss", Locale.getDefault());
 
         String formattedDate = dateFormat.format(currentDate);
 
         dateTimePrice.setText("Price updated on: " + formattedDate);
-        dateTimeFee.setText("Tx updated at: " + formattedDate);
+        dateTimeFee.setText("Tx updated on: " + formattedDate);
 
         tinyDB.putString("datetimeprice", dateTimePrice.getText().toString());
         tinyDB.putString("datetimefee", dateTimeFee.getText().toString());
@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
 
                 tinyDB.putInt("highPriority", Integer.parseInt(txFee));
 
-                Toast.makeText(this, "Tx fees Notifications is now ON.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tx fees Notifications ON.", Toast.LENGTH_SHORT).show();
 
                 feeStartAlarm();
 
@@ -387,7 +387,7 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.dismiss();
 
-                Toast.makeText(this, "Price Notifications is now ON.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Price Notifications ON.", Toast.LENGTH_SHORT).show();
 
                 priceStartAlarm(Integer.parseInt(time));
 

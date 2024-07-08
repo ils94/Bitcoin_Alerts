@@ -23,7 +23,7 @@ public class FeeHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fee_history);
 
-        setTitle("Histórico de Taxas");
+        setTitle("Tx History");
 
         tinyDB = new TinyDB(this);
 

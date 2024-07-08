@@ -4,15 +4,25 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNewsFetcher.NewsFetchListener {
 
+    private RecyclerView recyclerView;
+    private ArticleAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bitcoin_news);
+
+        setTitle("Bitcoin News");
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         BitcoinNewsFetcher.fetchBitcoinNews(this);
     }
@@ -20,10 +30,8 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
     @Override
     public void onNewsFetched(List<BitcoinNewsFetcher.Article> articles) {
         // Handle the fetched news articles here
-        for (BitcoinNewsFetcher.Article article : articles) {
-            System.out.println(article.title
-            + "\n" + article.url);
-        }
+        adapter = new ArticleAdapter(articles, this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

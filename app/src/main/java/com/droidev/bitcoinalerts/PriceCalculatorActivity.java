@@ -87,8 +87,8 @@ public class PriceCalculatorActivity extends AppCompatActivity {
                     NumberFormat currencyFormatBRL = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
                     NumberFormat currencyFormatUSD = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
 
-                    priceBRL.setText("Bitcoin Price BRL: " + currencyFormatBRL.format(result1));
-                    priceUSD.setText("Bitcoin Price USD: " + currencyFormatUSD.format(result2));
+                    priceBRL.setText("BRL amount: " + currencyFormatBRL.format(result1));
+                    priceUSD.setText("USD amount: " + currencyFormatUSD.format(result2));
 
                 } catch (Exception e) {
 
