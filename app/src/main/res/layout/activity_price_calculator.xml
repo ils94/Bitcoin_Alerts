@@ -28,7 +28,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/BTCQuantidade"
+                android:id="@+id/BTCamount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -45,21 +45,21 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/precoBRL"
+            android:id="@+id/priceBRL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Valor em BRL:"
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/precoUSD"
+            android:id="@+id/priceUSD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Valor em USD:"
             tools:ignore="HardcodedText" />
 
         <Button
-            android:id="@+id/calcular1"
+            android:id="@+id/cal1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -93,7 +93,7 @@
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/BRLQuantidade"
+            android:id="@+id/BRLamount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Valor em BRL"
@@ -101,14 +101,14 @@
             tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
         <TextView
-            android:id="@+id/valorBRLBTC"
+            android:id="@+id/priceBRLBTC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Valor em BTC:"
             tools:ignore="HardcodedText" />
 
         <Button
-            android:id="@+id/calcular2"
+            android:id="@+id/cal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -142,7 +142,7 @@
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/USDQuantidade"
+            android:id="@+id/USDamount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Valor em USD"
@@ -150,14 +150,14 @@
             tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck" />
 
         <TextView
-            android:id="@+id/valorUSDBTC"
+            android:id="@+id/priceUSDBTC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Valor em BTC:"
             tools:ignore="HardcodedText" />
 
         <Button
-            android:id="@+id/calcular3"
+            android:id="@+id/cal3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

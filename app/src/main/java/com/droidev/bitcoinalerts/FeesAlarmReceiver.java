@@ -22,9 +22,9 @@ public class FeesAlarmReceiver extends BroadcastReceiver {
 
                     TinyDB tinyDB = new TinyDB(context);
 
-                    String fastestfee = "Taxa de Prioridade Alta: " + fees[0] + " sat/vB";
-                    String halfhourfee = "Taxa de Prioridade Alta: " + fees[1] + " sat/vB";
-                    String hourfee = "Taxa de Prioridade Alta: " + fees[2] + " sat/vB";
+                    String fastestfee = "High priority: " + fees[0] + " sat/vB";
+                    String halfhourfee = "Medium priority: " + fees[1] + " sat/vB";
+                    String hourfee = "Low priority: " + fees[2] + " sat/vB";
 
                     tinyDB.putString("fastestfee", fastestfee);
                     tinyDB.putString("halfhourfee", halfhourfee);
@@ -36,15 +36,15 @@ public class FeesAlarmReceiver extends BroadcastReceiver {
 
                     String formattedDate = dateFormat.format(currentDate);
 
-                    String date = "Taxa atualizada em: " + formattedDate;
+                    String date = "Tx updated at: " + formattedDate;
 
                     tinyDB.putString("datetimefee", date);
 
                     saveHistory(context, fastestfee, halfhourfee, hourfee, date);
 
-                    int altaPrioridade = tinyDB.getInt("altaprioridade");
+                    int highPriorty = tinyDB.getInt("highPriority");
 
-                    if (fees[0] <= altaPrioridade) {
+                    if (fees[0] <= highPriorty) {
 
                         FeesNotification.showNotification(context, fees[0], fees[1], fees[2]);
                     }

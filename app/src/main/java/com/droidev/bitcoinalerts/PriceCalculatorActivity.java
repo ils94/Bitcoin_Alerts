@@ -16,10 +16,10 @@ import java.util.Locale;
 
 public class PriceCalculatorActivity extends AppCompatActivity {
 
-    EditText BTCQuantidade, BRLQuantidade, USDQuantidade;
-    TextView precoBRL, precoUSD, valorBRLBTC, valorUSDBTC;
+    EditText BTCamount, BRLamount, USDamount;
+    TextView priceBRL, priceUSD, priceBRLBTC, priceUSDBTC;
 
-    Button calcular1, calcular2, calcular3;
+    Button cal1, cal2, cal3;
 
     CheckBox sats;
 
@@ -28,35 +28,35 @@ public class PriceCalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price_calculator);
 
-        setTitle("Calcular Valores");
+        setTitle("Calculator");
 
-        BTCQuantidade = findViewById(R.id.BTCQuantidade);
-        BRLQuantidade = findViewById(R.id.BRLQuantidade);
-        USDQuantidade = findViewById(R.id.USDQuantidade);
+        BTCamount = findViewById(R.id.BTCamount);
+        BRLamount = findViewById(R.id.BRLamount);
+        USDamount = findViewById(R.id.USDamount);
 
-        precoBRL = findViewById(R.id.precoBRL);
-        precoUSD = findViewById(R.id.precoUSD);
-        valorBRLBTC = findViewById(R.id.valorBRLBTC);
-        valorUSDBTC = findViewById(R.id.valorUSDBTC);
+        priceBRL = findViewById(R.id.priceBRL);
+        priceUSD = findViewById(R.id.priceUSD);
+        priceBRLBTC = findViewById(R.id.priceBRLBTC);
+        priceUSDBTC = findViewById(R.id.priceUSDBTC);
 
-        calcular1 = findViewById(R.id.calcular1);
-        calcular2 = findViewById(R.id.calcular2);
-        calcular3 = findViewById(R.id.calcular3);
+        cal1 = findViewById(R.id.cal1);
+        cal2 = findViewById(R.id.cal2);
+        cal3 = findViewById(R.id.cal3);
 
         sats = findViewById(R.id.SATs);
 
-        calcular1.setOnClickListener(v -> priceBTC());
+        cal1.setOnClickListener(v -> priceBTC());
 
-        calcular2.setOnClickListener(v -> valueBRL());
+        cal2.setOnClickListener(v -> valueBRL());
 
-        calcular3.setOnClickListener(v -> valueUSD());
+        cal3.setOnClickListener(v -> valueUSD());
     }
 
     public void priceBTC() {
 
-        if (BTCQuantidade.getText().toString().isEmpty()) {
+        if (BTCamount.getText().toString().isEmpty()) {
 
-            Toast.makeText(this, "Erro, campo vazio.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -74,21 +74,21 @@ public class PriceCalculatorActivity extends AppCompatActivity {
 
                     if (sats.isChecked()) {
 
-                        double btcValue = Double.parseDouble(BTCQuantidade.getText().toString()) / 100000000.0;
+                        double btcValue = Double.parseDouble(BTCamount.getText().toString()) / 100000000.0;
 
                         result1 = btcValue * brlValue;
                         result2 = btcValue * usdValue;
                     } else {
 
-                        result1 = Double.parseDouble(BTCQuantidade.getText().toString()) * brlValue;
-                        result2 = Double.parseDouble(BTCQuantidade.getText().toString()) * usdValue;
+                        result1 = Double.parseDouble(BTCamount.getText().toString()) * brlValue;
+                        result2 = Double.parseDouble(BTCamount.getText().toString()) * usdValue;
                     }
 
                     NumberFormat currencyFormatBRL = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
                     NumberFormat currencyFormatUSD = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
 
-                    precoBRL.setText("Valor em BRL: " + currencyFormatBRL.format(result1));
-                    precoUSD.setText("Valor em USD: " + currencyFormatUSD.format(result2));
+                    priceBRL.setText("Bitcoin Price BRL: " + currencyFormatBRL.format(result1));
+                    priceUSD.setText("Bitcoin Price USD: " + currencyFormatUSD.format(result2));
 
                 } catch (Exception e) {
 
@@ -103,9 +103,9 @@ public class PriceCalculatorActivity extends AppCompatActivity {
 
     public void valueUSD() {
 
-        if (USDQuantidade.getText().toString().isEmpty()) {
+        if (USDamount.getText().toString().isEmpty()) {
 
-            Toast.makeText(this, "Erro, campo vazio.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -119,11 +119,11 @@ public class PriceCalculatorActivity extends AppCompatActivity {
 
                     double usdValue = bitcoinPrice.getUsdValue();
 
-                    double amount = Double.parseDouble(USDQuantidade.getText().toString());
+                    double amount = Double.parseDouble(USDamount.getText().toString());
 
                     double amountBTC = amount / usdValue;
 
-                    valorUSDBTC.setText("Valor em BTC: " + df.format(amountBTC).replace(",", "."));
+                    priceUSDBTC.setText("BTC amount: " + df.format(amountBTC).replace(",", "."));
 
                 } catch (Exception e) {
 
@@ -138,9 +138,9 @@ public class PriceCalculatorActivity extends AppCompatActivity {
 
     public void valueBRL() {
 
-        if (BRLQuantidade.getText().toString().isEmpty()) {
+        if (BRLamount.getText().toString().isEmpty()) {
 
-            Toast.makeText(this, "Erro, campo vazio.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -154,11 +154,11 @@ public class PriceCalculatorActivity extends AppCompatActivity {
 
                     double brlValue = bitcoinPrice.getBrlValue();
 
-                    double amount = Double.parseDouble(BRLQuantidade.getText().toString());
+                    double amount = Double.parseDouble(BRLamount.getText().toString());
 
                     double amountBTC = amount / brlValue;
 
-                    valorBRLBTC.setText("Valor em BTC: " + df.format(amountBTC).replace(",", "."));
+                    priceBRLBTC.setText("BTC amount: " + df.format(amountBTC).replace(",", "."));
 
                 } catch (Exception e) {
 

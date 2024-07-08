@@ -18,10 +18,10 @@ public class FeesNotification {
         notificationManager.createNotificationChannel(channel);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "bitcoin_fee_channel")
-                .setContentTitle("Bitcoin Alerts - Taxas")
-                .setContentText("Prioridade Alta: " + fastestFee + " sat/vB." +
-                        "\nPrioridade Média: " + halfHourFee + " sat/vB." +
-                        "\nPrioridade Baixa: " + hourFee + " sat/vB.")
+                .setContentTitle("Bitcoin Alerts - Tx fees")
+                .setContentText("High priority: " + fastestFee + " sat/vB." +
+                        "\nMedium priority: " + halfHourFee + " sat/vB." +
+                        "\nLow priority: " + hourFee + " sat/vB.")
                 .setSmallIcon(R.drawable.bitcoin)
                 .setAutoCancel(true);
 

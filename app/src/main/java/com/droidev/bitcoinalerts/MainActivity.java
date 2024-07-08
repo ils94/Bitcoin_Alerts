@@ -86,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if (item.getItemId() == R.id.news) {
+
+            Intent intent = new Intent(MainActivity.this, BitcoinNewsActivity.class);
+            startActivity(intent);
+
+        }
+
         if (item.getItemId() == R.id.priceHistory) {
 
             Intent intent = new Intent(MainActivity.this, PriceHistoryActivity.class);
@@ -108,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.feeNotificationsOFF) {
 
-            Toast.makeText(this, "Notificações de Taxa desativadas.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tx fees Notifications was turned off.", Toast.LENGTH_SHORT).show();
 
             feeCancelAlarm();
 
@@ -122,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.priceNotificationsOFF) {
 
-            Toast.makeText(this, "Notificações de Preço desativadas.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Price Notifications turned off.", Toast.LENGTH_SHORT).show();
 
             priceCancelAlarm();
 
@@ -130,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.allNotificationsOFF) {
 
-            Toast.makeText(this, "Todas as notificações foram desativadas.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "All Notifications were turned off.", Toast.LENGTH_SHORT).show();
 
             priceCancelAlarm();
             feeCancelAlarm();
@@ -163,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
                     NumberFormat currencyFormatBRL = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
                     NumberFormat currencyFormatUSD = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
 
-                    btcBRL.setText("Preço do BTC em BRL: " + currencyFormatBRL.format(brlValue));
-                    btcUSD.setText("Preço do BTC em USD: " + currencyFormatUSD.format(usdValue));
+                    btcBRL.setText("Bitcoin Price BRL: " + currencyFormatBRL.format(brlValue));
+                    btcUSD.setText("Bitcoin Price USD: " + currencyFormatUSD.format(usdValue));
 
                     tinyDB.putString("btcbrl", btcBRL.getText().toString());
                     tinyDB.putString("btcusd", btcUSD.getText().toString());
@@ -173,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                     saveHistory();
 
-                    Toast.makeText(this, "Valores atualizados.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Update completed.", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
 
@@ -195,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
 
         String formattedDate = dateFormat.format(currentDate);
 
-        dateTimePrice.setText("Preço atualizado em: " + formattedDate);
-        dateTimeFee.setText("Taxa atualizada em: " + formattedDate);
+        dateTimePrice.setText("Price updated on: " + formattedDate);
+        dateTimeFee.setText("Tx updated at: " + formattedDate);
 
         tinyDB.putString("datetimeprice", dateTimePrice.getText().toString());
         tinyDB.putString("datetimefee", dateTimeFee.getText().toString());
@@ -217,9 +224,9 @@ public class MainActivity extends AppCompatActivity {
                 int halfhourfee = fees[1];
                 int hourfee = fees[2];
 
-                fastestFee.setText("Taxa de Prioridade Alta: " + fastestfee + " sat/vB");
-                halfHourFee.setText("Taxa de Prioridade Média: " + halfhourfee + " sat/vB");
-                hourFee.setText("Taxa de Prioridade Baixa: " + hourfee + " sat/vB");
+                fastestFee.setText("High priority: " + fastestfee + " sat/vB");
+                halfHourFee.setText("Medium priority: " + halfhourfee + " sat/vB");
+                hourFee.setText("Low priority: " + hourfee + " sat/vB");
 
                 tinyDB.putString("fastestfee", fastestFee.getText().toString());
                 tinyDB.putString("halfhourfee", halfHourFee.getText().toString());
@@ -300,8 +307,8 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setCancelable(false)
-                .setTitle("Alerta de Taxas")
-                .setMessage("Insira o valor da taxa de transação em Sats. Quando a taxa de transação chegar nesse valor ou estiver menor, você receberá uma notificação.")
+                .setTitle("Tx fees Notifications")
+                .setMessage("Enter the transaction fee value in Sats. When the transaction fee reaches or falls below this value, you will receive a notification.")
                 .setPositiveButton("Ok", null)
                 .setNegativeButton("Cancel", null)
                 .setView(lay)
@@ -317,15 +324,15 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.dismiss();
 
-                tinyDB.putInt("altaprioridade", Integer.parseInt(txFee));
+                tinyDB.putInt("highPriority", Integer.parseInt(txFee));
 
-                Toast.makeText(this, "Notificações de Taxa ativadas.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tx fees Notifications is now ON.", Toast.LENGTH_SHORT).show();
 
                 feeStartAlarm();
 
             } else {
 
-                Toast.makeText(this, "É necessário inserir um valor.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -363,8 +370,8 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setCancelable(false)
-                .setTitle("Alerta de Preço")
-                .setMessage("Insira o tempo em minutos para receber notificações sobre o preço do Bitcoin.")
+                .setTitle("Price Notification")
+                .setMessage("Enter the time in minutes to receive notifications about the price of Bitcoin.")
                 .setPositiveButton("Ok", null)
                 .setNegativeButton("Cancel", null)
                 .setView(lay)
@@ -380,13 +387,13 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.dismiss();
 
-                Toast.makeText(this, "Notificações de Preço ativadas.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Price Notifications is now ON.", Toast.LENGTH_SHORT).show();
 
                 priceStartAlarm(Integer.parseInt(time));
 
             } else {
 
-                Toast.makeText(this, "É necessário inserir um valor.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -476,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
 
-                Toast.makeText(this, "É necessário conceder permissões para notificações.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "It is necessary to grant permissions for notifications.", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == REQUEST_NOTIFICATIONS_PERMISSION_PRICE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -485,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
 
-                Toast.makeText(this, "É necessário conceder permissões para notificações.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You need to grant permissions for notifications.", Toast.LENGTH_SHORT).show();
             }
         }
     }

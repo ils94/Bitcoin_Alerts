@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/fetchPrices"
-        android:title="Atualizar valores"
+        android:title="Update"
         tools:ignore="HardcodedText" />
 
     <item
         android:id="@+id/calculator"
-        android:title="Calcular valores"
+        android:title="Calulator"
         tools:ignore="HardcodedText" />
 
     <item
@@ -18,22 +18,27 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:title="Histórico"
+        android:id="@+id/news"
+        android:title="Bitcoin News"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:title="History"
         tools:ignore="HardcodedText">
         <menu>
             <item
                 android:id="@+id/priceHistory"
-                android:title="Preço"
+                android:title="Price"
                 tools:ignore="HardcodedText" />
             <item
                 android:id="@+id/feeHistory"
-                android:title="Taxa"
+                android:title="Tx fees"
                 tools:ignore="HardcodedText" />
         </menu>
     </item>
 
     <item
-        android:title="Notificações"
+        android:title="Notifications"
         tools:ignore="HardcodedText">
         <menu>
             <item
@@ -42,31 +47,31 @@
                 <menu>
                     <item
                         android:id="@+id/feeNotificationsON"
-                        android:title="Ativar notificações"
+                        android:title="Turn on Notifications"
                         tools:ignore="HardcodedText" />
                     <item
                         android:id="@+id/feeNotificationsOFF"
-                        android:title="Desativar notificações"
+                        android:title="Turn off Notifications"
                         tools:ignore="HardcodedText" />
                 </menu>
             </item>
             <item
-                android:title="Preço do Bitcoin"
+                android:title="Bitcoin Price"
                 tools:ignore="HardcodedText">
                 <menu>
                     <item
                         android:id="@+id/priceNotificationsON"
-                        android:title="Ativar notificações"
+                        android:title="Turn on Notifications"
                         tools:ignore="HardcodedText" />
                     <item
                         android:id="@+id/priceNotificationsOFF"
-                        android:title="Desativar notificações"
+                        android:title="Turn off Notifications"
                         tools:ignore="HardcodedText" />
                 </menu>
             </item>
             <item
                 android:id="@+id/allNotificationsOFF"
-                android:title="Desativar todas as notificações"
+                android:title="Turn off all Notifications"
                 tools:ignore="HardcodedText" />
         </menu>
     </item>

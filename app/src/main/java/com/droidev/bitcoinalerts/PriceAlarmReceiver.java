@@ -31,8 +31,8 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
                 String brlFormat = currencyFormatBRL.format(brlValue);
                 String usdFormat = currencyFormatUSD.format(usdValue);
 
-                String brl = "Preço do BTC em BRL: " + brlFormat;
-                String usd = "Preço do BTC em USD: " + usdFormat;
+                String brl = "Bitcoin Price BRL: " + brlFormat;
+                String usd = "Bitcoin Price USD: " + usdFormat;
 
                 tinyDB.putString("btcbrl", brl);
                 tinyDB.putString("btcusd", usd);
@@ -43,7 +43,7 @@ public class PriceAlarmReceiver extends BroadcastReceiver {
 
                 String formattedDate = dateFormat.format(currentDate);
 
-                String date = "Preço atualizado em: " + formattedDate;
+                String date = "Price updated on: " + formattedDate;
 
                 tinyDB.putString("datetimeprice", date);
 
