@@ -24,7 +24,7 @@ import java.util.List;
 public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNewsFetcher.NewsFetchListener {
 
     private RecyclerView recyclerView;
-    Menu menuItem;
+    Menu menuItem, menu;
     private ProgressBar progressBar;
     TinyDB tinyDB;
 
@@ -54,12 +54,16 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
         recyclerView.setAdapter(adapter);
 
         progressBar.setVisibility(View.GONE);
+
+        enableMenu();
     }
 
     @Override
     public void onFetchError(String error) {
 
         progressBar.setVisibility(View.GONE);
+
+        enableMenu();
 
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
@@ -71,7 +75,9 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
 
             progressBar.setVisibility(View.VISIBLE);
 
-            BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);;
+            disableMenu();
+
+            BitcoinNewsFetcher.fetchBitcoinNews(BitcoinNewsActivity.this, BitcoinNewsActivity.this);
 
         }
 
@@ -114,8 +120,32 @@ public class BitcoinNewsActivity extends AppCompatActivity implements BitcoinNew
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bitcoin_news_menu, menu);
 
+        this.menu = menu;
         menuItem = menu;
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void disableMenu() {
+
+        if (menu != null) {
+            MenuItem reload = menu.findItem(R.id.reload);
+
+            if (reload != null) {
+                reload.setEnabled(false);
+            }
+        }
+    }
+
+    private void enableMenu() {
+
+        if (menu != null) {
+            MenuItem reload = menu.findItem(R.id.reload);
+
+            if (reload != null) {
+                reload.setEnabled(true);
+            }
+        }
+
     }
 }

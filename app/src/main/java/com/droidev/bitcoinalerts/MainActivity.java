@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     TextView btcBRL, btcUSD, fastestFee, halfHourFee, hourFee, dateTimePrice, dateTimeFee;
     ProgressBar progressBar;
 
-    Menu menuItem;
+    Menu menuItem, menu;
 
     TinyDB tinyDB;
 
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
 
+        this.menu = menu;
         menuItem = menu;
 
         return super.onCreateOptionsMenu(menu);
@@ -162,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
     public void fetchPrice() {
 
         progressBar.setVisibility(View.VISIBLE);
+
+        disableMenu();
 
         @SuppressLint("SetTextI18n") BitcoinPriceFetcher fetcher = new BitcoinPriceFetcher(bitcoinPrice -> {
             if (bitcoinPrice != null) {
@@ -188,7 +191,13 @@ public class MainActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.GONE);
 
+                    enableMenu();
+
                 } catch (Exception e) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                    enableMenu();
 
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
@@ -443,6 +452,29 @@ public class MainActivity extends AppCompatActivity {
         arrayListFee.add(fee);
 
         tinyDB.putListString("feeHistory", arrayListFee);
+    }
+
+    private void disableMenu() {
+
+        if (menu != null) {
+            MenuItem update = menu.findItem(R.id.fetchPrices);
+
+            if (update != null) {
+                update.setEnabled(false);
+            }
+        }
+    }
+
+    private void enableMenu() {
+
+        if (menu != null) {
+            MenuItem update = menu.findItem(R.id.fetchPrices);
+
+            if (update != null) {
+                update.setEnabled(true);
+            }
+        }
+
     }
 
     @SuppressLint("InlinedApi")
