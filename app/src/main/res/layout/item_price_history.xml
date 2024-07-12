@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/rounded_corner_background"
-    android:padding="16dp"
-    android:layout_margin="8dp"
-    android:elevation="2dp">
+    android:padding="15dp"
+    android:layout_margin="10dp"
+    android:elevation="5dp">
 
     <TextView
         android:id="@+id/priceHistoryItemText"
@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textColor="@android:color/black"
-        android:padding="8dp"
+        android:padding="10dp"
         android:background="@android:color/white"
-        android:elevation="2dp"
+        android:elevation="5dp"
         android:gravity="left" />
 
 </LinearLayout>
