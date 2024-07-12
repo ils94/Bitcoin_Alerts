@@ -1,21 +1,19 @@
 package com.droidev.bitcoinalerts;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class FeeHistoryActivity extends AppCompatActivity {
 
-    TextView feeHistory;
+    RecyclerView feeHistoryRecyclerView;
     TinyDB tinyDB;
-
     Menu menuItem;
 
     @Override
@@ -27,37 +25,27 @@ public class FeeHistoryActivity extends AppCompatActivity {
 
         tinyDB = new TinyDB(this);
 
-        feeHistory = findViewById(R.id.feeHistoryTextView);
+        feeHistoryRecyclerView = findViewById(R.id.feeHistoryRecyclerView);
 
-        ArrayList<String> arrayList;
-
-        arrayList = tinyDB.getListString("feeHistory");
+        ArrayList<String> arrayList = tinyDB.getListString("feeHistory");
         ArrayList<String> invertedList = new ArrayList<>();
 
         for (int i = arrayList.size() - 1; i >= 0; i--) {
             invertedList.add(arrayList.get(i));
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (String element : invertedList) {
-            stringBuilder.append(element).append("\n\n");
-        }
-
-        feeHistory.setText(stringBuilder.toString());
+        FeeHistoryAdapter adapter = new FeeHistoryAdapter(invertedList);
+        feeHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        feeHistoryRecyclerView.setAdapter(adapter);
     }
 
     @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.clearFeeHistory) {
-
             tinyDB.remove("feeHistory");
-
-            feeHistory.setText("");
-
+            ((FeeHistoryAdapter) feeHistoryRecyclerView.getAdapter()).clearData();
             Toast.makeText(this, "History deleted.", Toast.LENGTH_SHORT).show();
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -65,9 +53,7 @@ public class FeeHistoryActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.fee_history_menu, menu);
-
         menuItem = menu;
-
         return super.onCreateOptionsMenu(menu);
     }
 }
