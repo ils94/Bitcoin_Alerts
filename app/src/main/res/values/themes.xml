@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BitcoinAlerts" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.BitcoinAlerts" parent="Theme.AppCompat.Light">
+        <item name="android:forceDarkAllowed">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/btcorange</item>
         <item name="colorPrimaryVariant">@color/btcorange</item>
@@ -11,6 +12,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="actionOverflowButtonStyle">@style/Threedotcolor</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+    <style name="Threedotcolor" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name ="tint">@color/white</item>
     </style>
 </resources>
